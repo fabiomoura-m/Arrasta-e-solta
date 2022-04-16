@@ -10,10 +10,10 @@ document.querySelectorAll('.item').forEach(item => {
   item.addEventListener('dragend', dragEnd);
 });
 
-document.querySelectorAll('.area').forEach(item => {
-  area.addEventListener('dragover', dragOver);
-  area.addEventListener('dragleave', dragLeave);
-  area.addEventListener('drop', drop);
+document.querySelectorAll('.area').forEach(area => {
+  area.addEventListener('dragover', dragOver); // roda a função quando o item passar por cima da area
+  area.addEventListener('dragleave', dragLeave); // roda a função quando você sai da área
+  area.addEventListener('drop', drop); // quando solta o item no local
 });
 
 // Functions Item
@@ -26,3 +26,13 @@ function dragEnd(e) {
 }
 
 //Functions Area
+function dragOver(e) {
+  e.preventDefault(); // o comportamento padrão é negar o drop, dessa forma, liberamos o drop.
+  e.currentTarget.classList.add('hover');
+}
+function dragLeave(e) {
+  e.currentTarget.classList.remove('hover');
+}
+function drop() {
+  console.log('Liberou');
+}

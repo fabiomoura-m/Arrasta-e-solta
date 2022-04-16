@@ -16,6 +16,11 @@ document.querySelectorAll('.area').forEach(area => {
   area.addEventListener('drop', drop); // quando solta o item no local
 });
 
+let neutralArea = document.querySelector('.neutralArea');
+neutralArea.addEventListener('dragover', dragOverNeutral);
+neutralArea.addEventListener('dragleave', dragLeaveNeutral);
+neutralArea.addEventListener('drop', dropNeutral);
+
 // Functions Item
 function dragStart(e) {
   e.currentTarget.classList.add('dragging');
@@ -43,4 +48,18 @@ function drop(e) {
     let dragItem = document.querySelector('.item.dragging');
     e.currentTarget.appendChild(dragItem);
   }
+}
+
+//Functions Neutral Area
+function dragOverNeutral(e) {
+  e.preventDefault();
+  e.currentTarget.classList.add('hover');
+}
+function dragLeaveNeutral(e) {
+  e.currentTarget.classList.remove('hover');
+}
+function dropNeutral(e) {
+  e.currentTarget.classList.remove('hover');
+  let dragItem = document.querySelector('.item.dragging');
+  e.currentTarget.appendChild(dragItem);
 }

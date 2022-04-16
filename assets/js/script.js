@@ -27,12 +27,20 @@ function dragEnd(e) {
 
 //Functions Area
 function dragOver(e) {
-  e.preventDefault(); // o comportamento padrão é negar o drop, dessa forma, liberamos o drop.
-  e.currentTarget.classList.add('hover');
+  if (e.currentTarget.querySelector('.item') === null) {
+    e.preventDefault(); // o comportamento padrão é negar o drop, dessa forma, liberamos o drop.
+    e.currentTarget.classList.add('hover');
+  }
 }
 function dragLeave(e) {
   e.currentTarget.classList.remove('hover');
 }
-function drop() {
-  console.log('Liberou');
+function drop(e) {
+  e.currentTarget.classList.remove('hover');
+
+  //verifica se tem algum item na area
+  if (e.currentTarget.querySelector('.item') === null) {
+    let dragItem = document.querySelector('.item.dragging');
+    e.currentTarget.appendChild(dragItem);
+  }
 }
